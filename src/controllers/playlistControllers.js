@@ -1,30 +1,29 @@
-const {getPlaylist, addSong, getSong, playSong, mostPlayed} = require('../models/playlist');
+const { getAllPlaylist,addSong,playedSong,popularSongs,findIdSong } = require("../models/playlist")
 
 
 module.exports = {
-    getPlaylist(req, res) {
-        const get = getPlaylist();
-        
+    getAll(req, res) {
+        const get = getAllPlaylist();
         res.send(get);
     },
 
-    addSong(req, res) {
+    addSongToPlaylist(req, res) {
         const { title, artists, album } = req.body;
         const add = addSong(title, artists, album);
         
         res.send(add);
     },
 
-    getSong(req, res) {
+    getPlayedSong(req, res) {
         const {id} = req.params;
-        const song = getSong(id);
+        const song = playedSong(id);
         
         res.send(song);
     },
 
-    playSong(req, res) {
-        const {id} = req.params;
-        const play = playSong(id);
+    getMostPlayedSong(req, res) {
+        
+        const play = popularSongs(id);
 
         res.send(play);
     }

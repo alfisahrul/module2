@@ -1,16 +1,10 @@
 const express = require('express');
-const playlist = require('./src/models/playlist');
 const app = express();
+const playlistRouter = require('./router/playlist');
 
-const playlistRoutes = require('./route/playlistRoute');
+app.use(express.json())
 
-app.use('/playlist',playlistRoutes);
-
-
-
-app.get ('/',(req,res) => {
-    res.send("BERHASIL")
-})
+app.use('/playlist',playlistRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Listening server port ${process.env.PORT}`);
