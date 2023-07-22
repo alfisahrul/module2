@@ -1,11 +1,11 @@
-const express = require('express');
-const Router = express.Router();
+const express = require('express')
+const Router = express.Router()
 
-const PlaylistControllers = require('../controllers/playlistControllers');
+const Controller = require('../controllers/playlist')
 
-Router.get('/', PlaylistControllers.getAll);
-Router.get('/popular', PlaylistControllers.getMostPlayedSong);
-Router.put('./:id', PlaylistControllers.getPlayedSong);
-Router.post('/', PlaylistControllers.addSongToPlaylist);
+Router.get('/',Controller.getAllPlaylist)
+Router.get('/popular',Controller.getMostPopular)
+Router.put('/:id',Controller.play)
+Router.post('/',Controller.addToPlaylist)
 
-module.exports = Router;
+module.exports = Router

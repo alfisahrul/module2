@@ -1,39 +1,39 @@
 let playlist = []
 
-
-function getAllPlaylist(){
-    return playlist;
+function find() {
+    return playlist
 }
 
-function findIdSong(id){
-    let filtered = playlist.filter(song => song.id === parseInt(id))
-    
+function findById(id) {
+    let filtered = playlist.filter(v => v.id === parseInt(id))
     return filtered
 }
-function playedSong(id){
-    let filtered = playlist.filter(song => song.id === parseInt(id))
-    filtered[0].countPlayed += 1
-    return filtered;
-}
 
-function addSong(title,artists,album){
+function create(title,artist,album) {
     playlist.push({
-        id:playlist.length+1,
+        id:playlist.length + 1,
         title:title,
-        artists:artists,
+        artist:artist,
         album:album,
         countPlayed:0
     })
     return playlist
 }
 
-function popularSongs(){
-  
-    let mostPopular = playlist.sort((a,b)=>{
-        
-        return b.countPlayed - a.countPlayed
-    })
-    return mostPopular 
+function play(id) {
+    let filtered = playlist.filter(v => v.id === parseInt(id))
+    filtered[0].countPlayed += 1
+
+    return filtered
 }
 
-module.exports = [getAllPlaylist,playlist,addSong,playedSong,popularSongs,findIdSong];
+function popular() {
+    let filtered = playlist.filter(v => v.countPlayed >= 5)
+    let sorted = filtered.sort((a,b)=>{
+        return b.countPlayed - a.countPlayed
+    })
+
+    return sorted
+}
+
+module.exports = {playlist, find, findById, popular, create, play}
